@@ -1,0 +1,115 @@
+import java.util.Scanner;
+
+class project {
+    static records[] rec = new records[20] ;
+    static int counter=0;
+    public static void main(String[] args) {
+        int choice = 0;
+        while (choice != 4) {
+            System.out.println("*** Welcome to My software *** ");
+            System.out.println("1. Add a new buyer ");
+            System.out.println("2. all report about suppliers ");
+            System.out.println("3. find details of supplier ");
+            System.out.println("4. exit ");
+            Scanner s = new Scanner(System.in);
+            System.out.println("Enter your choice accordingly : ");
+            choice = s.nextInt();
+            choice_selection(choice);
+        }
+    }
+
+    public static void choice_selection(int choice) {
+        switch (choice) {
+            case 1:
+                add_buyer();
+                break;
+            case 2:
+                System.out.println("*** Details of all suppliers *** ");
+                all_records();
+                break;
+            case 3:
+                find_supplier();
+                break;
+            case 4:
+                System.out.println("Thank you for using my software");
+                System.out.println("Always open for feedbacks");
+                break;
+
+            default:
+                System.out.println("That choice is not available !!");
+                System.out.println("Try again !!");
+                break;
+        }
+    }
+
+    public static void add_buyer() {
+        System.out.println("Enter the details of new supplier or buyer as follows :");
+        records r_new = new records();
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter the name of supplier :");
+        r_new.Supliers_name=s.nextLine();
+
+        System.out.println("Enter the name of Product :");
+        r_new.name_of_product=s.nextLine();
+
+        System.out.println("Order placed on :");
+        r_new.date_of_order_placed=s.nextLine();
+
+        System.out.println("Order delivered on :");
+        r_new.date_of_order_del=s.nextLine();
+
+        System.out.println("Quantity of Product :");
+        r_new.quantity=s.nextInt();
+
+        System.out.println("Price of one Product :");
+        r_new.amount=s.nextFloat();
+
+        System.out.println("Payment mode used :");
+        r_new.payment_mode=s.next();
+
+        rec[counter]=r_new;
+        counter++;
+
+    }
+    public static void all_records(){
+        for (int i = 0; i < counter; i++) {
+            System.out.println("*** Supplier "+(i+1)+"***");
+            System.out.println("Supplier :- "+rec[i].Supliers_name);
+            System.out.println("Product  :- "+rec[i].name_of_product);
+            System.out.println("Order placed on :- "+rec[i].date_of_order_placed);
+            System.out.println("Order delivered on :- "+rec[i].date_of_order_del);
+            System.out.println("Quantity of Product :- "+rec[i].name_of_product);
+            System.out.println("Price of one Product :- "+rec[i].amount);
+            System.out.println("Total price paid :- "+rec[i].amount*rec[i].quantity);
+            System.out.println("Payment mode used :- "+rec[i].payment_mode);
+        }
+    }
+    public static void find_supplier(){
+        System.out.println("Enter the supplier whos details you need : ");
+        Scanner s = new Scanner(System.in);
+        String find_supplier = s.nextLine();
+        for (int i = 0; i < counter; i++) {
+            if(find_supplier.equalsIgnoreCase(rec[i].Supliers_name)){
+                System.out.println("Supplier :- "+rec[i].Supliers_name);
+                System.out.println("Product  :- "+rec[i].name_of_product);
+                System.out.println("Order placed on :- "+rec[i].date_of_order_placed);
+                System.out.println("Order delivered on :- "+rec[i].date_of_order_del);
+                System.out.println("Quantity of Product :- "+rec[i].name_of_product);
+                System.out.println("Price of one Product :- "+rec[i].amount);
+                System.out.println("Total price paid :- "+rec[i].amount*rec[i].quantity);
+                System.out.println("Payment mode used :- "+rec[i].payment_mode);
+            }
+        }
+        
+    }
+}
+
+class records {
+    String Supliers_name;
+    String date_of_order_del;
+    String date_of_order_placed;
+    String name_of_product;
+    int quantity;
+    float amount;
+    String payment_mode;
+}
